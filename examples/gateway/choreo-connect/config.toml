@@ -1,0 +1,13 @@
+# نمونه کانفیگ Choreo Connect (نمایشی)
+[enforcer.throttling]
+enableGlobalEventPublishing = true
+
+[enforcer.jwt]
+validateSubscription = true
+validateConsumerKey = true
+
+[router.cors]
+enabled = true
+allowOrigins = ["https://portal.example.com"]
+allowMethods = ["GET","POST","PUT","DELETE"]
+allowHeaders = ["authorization","content-type","x-channel"]

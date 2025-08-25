@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Accounts API (Sample)
+  version: 1.0.0
+  description: |
+    مشاهده موجودی و تراکنش‌ها.
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /accounts/{accountId}/balance:
+    get:
+      summary: Get account balance
+      security:
+        - oauth2: [accounts.read]
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId: { type: string }
+                  currency: { type: string }
+                  balance: { type: number, format: double }
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://idp.example.com/oauth2/token
+          scopes:
+            accounts.read: Read account info

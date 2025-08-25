@@ -1,0 +1,10 @@
+<!-- نمونه Mediation Sequence برای لاگ اولیه درخواست -->
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="RequestLogSeq">
+    <property name="api.name" expression="get-property('axis2', 'REST_API')" scope="axis2" type="STRING"/>
+    <log level="custom">
+        <property name="stage" value="request-in"/>
+        <property name="api" expression="get-property('axis2','REST_API')"/>
+        <property name="resource" expression="get-property('axis2','REST_URL_PATTERN')"/>
+        <property name="method" expression="get-property('axis2','HTTP_METHOD')"/>
+    </log>
+</sequence>

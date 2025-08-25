@@ -1,0 +1,29 @@
+# نمونه پلن‌های Throttling
+tiers:
+  - name: Bronze
+    requestCount: 10000
+    unitTime: 1
+    timeUnit: day
+    burst: 1000
+  - name: Silver
+    requestCount: 100000
+    unitTime: 1
+    timeUnit: day
+    burst: 5000
+  - name: Gold
+    requestCount: 1000000
+    unitTime: 1
+    timeUnit: day
+    burst: 20000
+advanced:
+  - name: GeoRestricted
+    conditions:
+      - type: ip
+        allow: ["198.51.100.0/24"]
+      - type: header
+        key: "X-Channel"
+        value: "MOBILE"
+    limits:
+      requestCount: 50000
+      unitTime: 1
+      timeUnit: day

@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: Payments API (Sample)
+  version: 1.0.0
+  description: |
+    ثبت دستور پرداخت.
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /payments:
+    post:
+      summary: Create a payment
+      security:
+        - oauth2: [payments.create]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount, currency, debtor, creditor]
+              properties:
+                amount: { type: number, format: double }
+                currency: { type: string, example: "IRR" }
+                debtor: { type: string, example: "DEBTOR-ACC-001" }
+                creditor: { type: string, example: "CREDITOR-ACC-999" }
+                reference: { type: string }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  paymentId: { type: string }
+                  status: { type: string, enum: [PENDING, ACCEPTED, REJECTED] }
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://idp.example.com/oauth2/token
+          scopes:
+            payments.create: Create payment

@@ -1,0 +1,17 @@
+# نمونه فرم آنبورد سازمان/فین‌تک
+organization: "ACME Fintech"
+contact:
+  name: "Jane Doe"
+  email: "jane@example.com"
+use_cases:
+  - "Account Information"
+  - "Payments Initiation"
+environments:
+  - name: "Sandbox"
+    allowed_ips: ["203.0.113.10/32"]
+  - name: "Production"
+    allowed_ips: ["198.51.100.0/24"]
+security:
+  mtls_required: true
+  allowed_scopes: ["accounts.read", "payments.create"]
+sla_tier: "Silver"
